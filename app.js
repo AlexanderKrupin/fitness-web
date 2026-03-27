@@ -12,46 +12,45 @@ const sidebarOverlay = document.getElementById("sidebarOverlay");
 const toast = document.getElementById("toast");
 
 const screenTitles = {
-  plans: "Планы тренировок",
-  exercises: "Упражнения",
-  progress: "Прогресс",
-  notifications: "Уведомления",
-  jobs: "Фоновые задачи"
+  plans: "Пользователи",
+  exercises: "Диалоги",
+  progress: "Аналитика",
+  notifications: "Рассылки",
+  jobs: "Автоматизации"
 };
 
 const plans = [
-  { name: "Strength Base 6W", category: "Силовые", duration: "6 недель", sessions: 24, author: "Alex Mercer", updated: "2026-03-24", status: "Активный" },
-  { name: "Lean Cut Phase", category: "Кардио + дефицит", duration: "8 недель", sessions: 32, author: "Nina Volkov", updated: "2026-03-19", status: "Черновик" },
-  { name: "Hypertrophy Reload", category: "Гипертрофия", duration: "10 недель", sessions: 40, author: "Daniel Ross", updated: "2026-03-21", status: "Активный" },
-  { name: "Morning Mobility Reset", category: "Мобилити", duration: "4 недели", sessions: 20, author: "Kate Orlov", updated: "2026-03-10", status: "Архив" },
-  { name: "Athlete Engine", category: "Функционал", duration: "12 недель", sessions: 48, author: "Alex Mercer", updated: "2026-03-27", status: "Активный" },
-  { name: "Core Recovery Track", category: "Core", duration: "5 недель", sessions: 18, author: "Nina Volkov", updated: "2026-03-12", status: "Черновик" }
+  { name: "@alex_store_owner", category: "Администратор", duration: "RU", sessions: 184, author: "Telegram Organic", updated: "2026-03-27", status: "Активный" },
+  { name: "@mila_support", category: "Оператор", duration: "RU", sessions: 129, author: "Deep Link", updated: "2026-03-25", status: "Активный" },
+  { name: "@john_trial_user", category: "Пользователь", duration: "EN", sessions: 42, author: "Referral", updated: "2026-03-24", status: "Черновик" },
+  { name: "@kate_marketing", category: "Маркетолог", duration: "RU", sessions: 88, author: "Ad Campaign", updated: "2026-03-22", status: "Активный" },
+  { name: "@silent_client", category: "Пользователь", duration: "RU", sessions: 4, author: "QR Bot", updated: "2026-03-10", status: "Отключен" },
+  { name: "@oleg_partner", category: "Партнер", duration: "UA", sessions: 23, author: "Manual Import", updated: "2026-03-18", status: "Архив" }
 ];
 
 const exercises = [
-  { title: "Deadlift", category: "Силовые", muscles: "Спина / Ягодицы", level: "Advanced", work: "5×5", preview: "BARBELL" },
-  { title: "Bulgarian Split Squat", category: "Силовые", muscles: "Квадрицепс / Ягодицы", level: "Intermediate", work: "4×8", preview: "UNILATERAL" },
-  { title: "Hollow Body Hold", category: "Core", muscles: "Core", level: "Intermediate", work: "4×45s", preview: "ISOMETRIC" },
-  { title: "Assault Bike Sprint", category: "Кардио", muscles: "Ноги / Плечи", level: "Advanced", work: "8×20s", preview: "HIIT" },
-  { title: "Incline Push-Up", category: "Силовые", muscles: "Грудь / Трицепс", level: "Beginner", work: "3×15", preview: "BODYWEIGHT" },
-  { title: "90/90 Hip Flow", category: "Мобилити", muscles: "Тазобедренные", level: "Beginner", work: "6 min", preview: "MOBILITY" },
-  { title: "Toe Touch Stretch", category: "Растяжка", muscles: "Задняя линия", level: "Beginner", work: "3×40s", preview: "FLEX" }
+  { title: "/start", category: "Onboarding", muscles: "Приветствие + меню", level: "High", work: "2 шага", preview: "CMD" },
+  { title: "/faq", category: "FAQ", muscles: "Частые вопросы", level: "High", work: "12 ответов", preview: "FAQ" },
+  { title: "Статус заказа", category: "Support", muscles: "Проверка трека", level: "Medium", work: "API call", preview: "FLOW" },
+  { title: "Промокод дня", category: "Promo", muscles: "Выдача купона", level: "Medium", work: "1 сообщение", preview: "SALE" },
+  { title: "Смена языка", category: "Settings", muscles: "RU/EN/UA", level: "Medium", work: "inline", preview: "LANG" },
+  { title: "Передача оператору", category: "Support", muscles: "handoff", level: "High", work: "SLA 2m", preview: "LIVE" }
 ];
 
 const notifications = [
-  { title: "Напоминание о вечерней тренировке", channel: "Push", audience: "RU / Active 7d", time: "2026-03-27 18:00", status: "Scheduled", metric: "OR 32%" },
-  { title: "Weekly Progress Digest", channel: "Email", audience: "Global / All paid", time: "2026-03-26 09:00", status: "Sent", metric: "CTR 9.4%" },
-  { title: "Промо: новый план Strength Base", channel: "Push", audience: "New users", time: "2026-03-25 12:30", status: "Delivered", metric: "OR 41%" },
-  { title: "Re-engagement 14d inactive", channel: "Email", audience: "Dormant cohort", time: "2026-03-24 07:00", status: "Failed", metric: "CTR 0.8%" },
-  { title: "Черновик welcome-flow", channel: "Email", audience: "N/A", time: "—", status: "Draft", metric: "—" }
+  { title: "Скидка на повторный заказ", channel: "Telegram", audience: "Покупатели 30d", time: "2026-03-27 12:00", status: "Scheduled", metric: "CTR 18.2%" },
+  { title: "Дайджест обновлений", channel: "Telegram", audience: "All active", time: "2026-03-26 10:00", status: "Sent", metric: "CTR 14.7%" },
+  { title: "Напоминание о брошенной корзине", channel: "Telegram", audience: "Cart abandon", time: "2026-03-25 19:00", status: "Delivered", metric: "CTR 21.5%" },
+  { title: "Реактивация неактивных", channel: "Telegram", audience: "Inactive 14d", time: "2026-03-24 11:30", status: "Failed", metric: "CTR 1.1%" },
+  { title: "Черновик welcome-серии", channel: "Telegram", audience: "N/A", time: "—", status: "Draft", metric: "—" }
 ];
 
 const jobs = [
-  { id: "JOB-94108", name: "delivery_batch_push_12", type: "Notification", started: "2026-03-27 09:41", duration: "00:03:18", status: "Выполняется", progress: 62, logs: ["job picked by worker-03", "fetching user segment", "payload prepared", "delivery batch #12 completed"] },
-  { id: "JOB-94102", name: "report_retention_weekly", type: "Analytics", started: "2026-03-27 09:35", duration: "00:02:01", status: "Завершено", progress: 100, logs: ["aggregate started", "loading cohorts", "export complete"] },
-  { id: "JOB-94093", name: "mail_provider_sync", type: "Email", started: "2026-03-27 09:21", duration: "00:00:44", status: "Ошибка", progress: 14, logs: ["job picked by worker-02", "timeout while connecting to mail provider", "retry scheduled"] },
-  { id: "JOB-94072", name: "plan_snapshot_archive", type: "Storage", started: "2026-03-27 09:04", duration: "00:01:18", status: "Завершено", progress: 100, logs: ["preparing archive", "storage write complete", "checksum valid"] },
-  { id: "JOB-94060", name: "segment_rebuild_global", type: "Segmentation", started: "2026-03-27 08:59", duration: "—", status: "В очереди", progress: 0, logs: ["waiting for available worker"] }
+  { id: "JOB-1108", name: "webhook_dispatch", type: "Webhook", started: "2026-03-27 09:41", duration: "00:03:18", status: "Выполняется", progress: 62, logs: ["webhook received", "validated signature", "queued response", "batch 12 delivered"] },
+  { id: "JOB-1102", name: "digest_scheduler", type: "Cron", started: "2026-03-27 09:35", duration: "00:02:01", status: "Завершено", progress: 100, logs: ["cron tick", "segment loaded", "messages pushed"] },
+  { id: "JOB-1093", name: "crm_sync", type: "Integration", started: "2026-03-27 09:21", duration: "00:00:44", status: "Ошибка", progress: 14, logs: ["sync started", "CRM timeout", "retry in 60 sec"] },
+  { id: "JOB-1072", name: "cleanup_archives", type: "Storage", started: "2026-03-27 09:04", duration: "00:01:18", status: "Завершено", progress: 100, logs: ["old files found", "archives removed", "storage ok"] },
+  { id: "JOB-1060", name: "segment_rebuild", type: "Segmentation", started: "2026-03-27 08:59", duration: "—", status: "В очереди", progress: 0, logs: ["waiting free worker"] }
 ];
 
 const appState = {
@@ -69,6 +68,7 @@ function badgeClassByStatus(status) {
     Активный: "active",
     Черновик: "draft",
     Архив: "archived",
+    Отключен: "failed",
     Scheduled: "scheduled",
     Sent: "sent",
     Delivered: "delivered",
@@ -162,7 +162,7 @@ function renderNotifications() {
 
   const filtered = notifications.filter((n) => {
     if (appState.notificationFilter === "all") return true;
-    if (["Push", "Email"].includes(appState.notificationFilter)) {
+    if (["Telegram"].includes(appState.notificationFilter)) {
       return n.channel === appState.notificationFilter;
     }
     return n.status === appState.notificationFilter;
@@ -226,13 +226,13 @@ function renderJobs() {
 
 function renderChart() {
   const svg = document.getElementById("activityChart");
-  const values = [4200, 4700, 5100, 4900, 5600, 6100, 6500];
+  const values = [1280, 1470, 1690, 1580, 1820, 2010, 2140];
   const labels = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
   const width = 900;
   const height = 280;
   const padding = { top: 20, right: 20, bottom: 42, left: 50 };
-  const min = 3800;
-  const max = 6800;
+  const min = 1100;
+  const max = 2300;
 
   const mapX = (i) => padding.left + (i * (width - padding.left - padding.right)) / (values.length - 1);
   const mapY = (value) => padding.top + ((max - value) * (height - padding.top - padding.bottom)) / (max - min);
@@ -272,7 +272,7 @@ function setScreen(screenKey, withLoading = true) {
       item.classList.toggle("active", item.dataset.screen === screenKey);
     });
 
-    sectionTitle.textContent = screenTitles[screenKey] || "Dashboard";
+    sectionTitle.textContent = screenTitles[screenKey] || "Панель";
     location.hash = screenKey;
     closeSidebar();
   };
