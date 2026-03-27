@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fitness Corp | Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">FITNESS CORP</div>
+        <nav class="nav">
+          <a href="#auth">Авторизация</a>
+          <a href="#plans">Планы тренировок</a>
+          <a href="#exercises">Упражнения</a>
+          <a href="#progress">Прогресс</a>
+          <a href="#notifications">Уведомления</a>
+          <a href="#jobs">Фоновые задачи</a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <header class="topbar">
+          <h1>Панель управления фитнес-приложением</h1>
+          <button class="ghost-btn">Новый отчёт</button>
+        </header>
+
+        <section id="auth" class="card">
+          <h2>Авторизация</h2>
+          <p>Защищённый вход для пользователей и администраторов.</p>
+          <form class="form-grid">
+            <label>
+              Email
+              <input type="email" placeholder="you@company.com" />
+            </label>
+            <label>
+              Пароль
+              <input type="password" placeholder="••••••••" />
+            </label>
+            <label>
+              Роль
+              <select>
+                <option>Пользователь</option>
+                <option>Тренер</option>
+                <option>Администратор</option>
+              </select>
+            </label>
+            <button type="button" class="primary-btn">Войти</button>
+          </form>
+        </section>
+
+        <section id="plans" class="card">
+          <h2>Планы тренировок</h2>
+          <p>Создание структурированных программ по целям и уровням подготовки.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>План</th>
+                  <th>Цель</th>
+                  <th>Длительность</th>
+                  <th>Статус</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Базовая сила</td>
+                  <td>Набор силы</td>
+                  <td>8 недель</td>
+                  <td><span class="badge">Активен</span></td>
+                </tr>
+                <tr>
+                  <td>Кардио баланс</td>
+                  <td>Выносливость</td>
+                  <td>6 недель</td>
+                  <td><span class="badge muted">Черновик</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="exercises" class="card">
+          <h2>Упражнения</h2>
+          <p>Каталог упражнений с фильтрацией по группам мышц и оборудованию.</p>
+          <div class="chips">
+            <span class="chip">Грудь</span>
+            <span class="chip">Спина</span>
+            <span class="chip">Ноги</span>
+            <span class="chip">Собственный вес</span>
+          </div>
+        </section>
+
+        <section id="progress" class="card metrics">
+          <h2>Прогресс</h2>
+          <p>Ключевые показатели выполнения программы и восстановления.</p>
+          <div class="metric-grid">
+            <article>
+              <h3>74%</h3>
+              <p>Выполнение плана</p>
+            </article>
+            <article>
+              <h3>5</h3>
+              <p>Тренировок на неделе</p>
+            </article>
+            <article>
+              <h3>+12%</h3>
+              <p>Рост рабочих весов</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="notifications" class="card">
+          <h2>Уведомления</h2>
+          <p>Системные и пользовательские уведомления с приоритетами.</p>
+          <ul class="list">
+            <li><strong>Высокий:</strong> пропущена тренировка «Силовой день A»</li>
+            <li><strong>Средний:</strong> обновлён недельный план</li>
+            <li><strong>Низкий:</strong> синхронизация завершена</li>
+          </ul>
+        </section>
+
+        <section id="jobs" class="card">
+          <h2>Фоновые задачи</h2>
+          <p>Очередь задач для синхронизации данных и генерации отчётов.</p>
+          <div class="jobs">
+            <div class="job-row">
+              <span>Импорт активности с носимых устройств</span>
+              <span class="status running">Выполняется</span>
+            </div>
+            <div class="job-row">
+              <span>Генерация еженедельного отчёта</span>
+              <span class="status queued">В очереди</span>
+            </div>
+            <div class="job-row">
+              <span>Архивация истории тренировок</span>
+              <span class="status done">Завершено</span>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
