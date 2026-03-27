@@ -13,282 +13,288 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="loginView" class="login-view">
-      <div class="ambient-glow"></div>
-      <div class="login-card">
-        <div class="logo-line">
-          <span class="logo-square">PF</span>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <section id="loginView" class="login-screen" data-view="login">
+      <div class="login-bg-grid"></div>
+      <div class="login-bg-noise"></div>
+      <div class="login-glow"></div>
+
+      <article class="login-panel" aria-label="Форма входа">
+        <header class="login-brand">
+          <div class="logo-badge">PF</div>
           <div>
-            <h1>PulseForge Admin</h1>
-            <p>Industrial control panel for fitness operations</p>
-          </div>
-        </div>
-
-        <form id="loginForm" class="form-stack" autocomplete="off">
-          <label>
-            Email
-            <input type="email" id="emailInput" placeholder="operator@pulseforge.io" required />
-          </label>
-          <label>
-            Пароль
-            <input type="password" id="passwordInput" placeholder="••••••••••" required />
-          </label>
-          <button class="btn btn-primary" type="submit">Войти</button>
-        </form>
-      </div>
-    </div>
-
-    <div id="dashboardView" class="dashboard hidden">
-      <aside class="sidebar">
-        <div class="brand-block">
-          <span class="logo-square">PF</span>
-          <div>
-            <h2>PulseForge</h2>
-            <p>Admin Console v2.4</p>
-          </div>
-        </div>
-
-        <nav class="menu" id="sideMenu">
-          <button class="menu-item active" data-screen="plans" type="button">
-            <span>🏋️</span><span>Планы тренировок</span>
-          </button>
-          <button class="menu-item" data-screen="exercises" type="button">
-            <span>🧩</span><span>Упражнения</span>
-          </button>
-          <button class="menu-item" data-screen="progress" type="button">
-            <span>📈</span><span>Прогресс</span>
-          </button>
-          <button class="menu-item" data-screen="notifications" type="button">
-            <span>🔔</span><span>Уведомления</span>
-          </button>
-          <button class="menu-item" data-screen="jobs" type="button">
-            <span>⚙️</span><span>Фоновые задачи</span>
-          </button>
-        </nav>
-      </aside>
-
-      <main class="main">
-        <header class="topbar card">
-          <div>
-            <p class="mono tiny">LIVE OPS • FITNESS</p>
-            <h3 id="sectionTitle">Планы тренировок</h3>
-          </div>
-          <div class="profile-box">
-            <div class="avatar">AK</div>
-            <div>
-              <strong>Арина Козлова</strong>
-              <p>Lead Admin</p>
-            </div>
-            <button id="logoutBtn" class="btn btn-ghost" type="button">Выйти</button>
+            <h1>PulseForge Internal</h1>
+            <p>Системный доступ к админ-панели фитнес-платформы</p>
           </div>
         </header>
 
-        <section id="screen-plans" class="screen active">
-          <div class="card">
-            <div class="section-head">
-              <div>
-                <h4>Планы тренировок</h4>
-                <p>Управление публикацией программ по целям, уровням и периодам.</p>
-              </div>
-              <button class="btn btn-primary" type="button">+ Создать план</button>
-            </div>
+        <form id="loginForm" class="stack-12" autocomplete="off">
+          <label class="field">
+            <span>Email</span>
+            <input type="email" id="emailInput" placeholder="operator@pulseforge.io" required />
+          </label>
+          <label class="field">
+            <span>Пароль</span>
+            <input type="password" id="passwordInput" placeholder="••••••••" required />
+          </label>
+          <button class="btn btn-primary" type="submit">Войти</button>
+        </form>
+      </article>
+    </section>
 
-            <div class="toolbar">
-              <input type="search" placeholder="Поиск: fat burn, strength, mobility" />
-              <select>
-                <option>Все статусы</option>
-                <option>Активный</option>
-                <option>Черновик</option>
-              </select>
-              <select>
-                <option>Все уровни</option>
-                <option>Beginner</option>
-                <option>Intermediate</option>
-                <option>Advanced</option>
-              </select>
-            </div>
+    <div id="dashboardView" class="dashboard hidden" data-view="dashboard">
+      <aside id="sidebar" class="sidebar" aria-label="Навигация">
+        <div class="sidebar-head">
+          <div class="logo-badge">PF</div>
+          <div>
+            <h2>PulseForge</h2>
+            <p>Admin Console v3.0</p>
+          </div>
+          <button id="sidebarClose" class="btn btn-ghost btn-icon" type="button" aria-label="Закрыть меню">✕</button>
+        </div>
 
-            <div class="table-wrap">
-              <table id="plansTable">
-                <thead>
-                  <tr>
-                    <th data-sort="name">Название</th>
-                    <th data-sort="coach">Тренер</th>
-                    <th data-sort="duration">Длительность</th>
-                    <th data-sort="updated">Обновлён</th>
-                    <th>Статус</th>
-                  </tr>
-                </thead>
-                <tbody></tbody>
-              </table>
+        <nav id="sideMenu" class="menu">
+          <button class="menu-item" type="button" data-screen="plans"><span>▦</span><span>Планы тренировок</span></button>
+          <button class="menu-item" type="button" data-screen="exercises"><span>◫</span><span>Упражнения</span></button>
+          <button class="menu-item" type="button" data-screen="progress"><span>⌁</span><span>Прогресс</span></button>
+          <button class="menu-item" type="button" data-screen="notifications"><span>◉</span><span>Уведомления</span></button>
+          <button class="menu-item" type="button" data-screen="jobs"><span>⚙</span><span>Фоновые задачи</span></button>
+        </nav>
+      </aside>
+
+      <div id="sidebarOverlay" class="overlay"></div>
+
+      <main class="main">
+        <header class="topbar card">
+          <div class="topbar-left">
+            <button id="sidebarOpen" class="btn btn-ghost btn-icon" type="button" aria-label="Открыть меню">☰</button>
+            <div>
+              <p class="mono tiny">INTERNAL OPS / LIGHT ENV</p>
+              <h3 id="sectionTitle">Планы тренировок</h3>
             </div>
           </div>
-        </section>
+          <div class="profile-block">
+            <div class="avatar">AM</div>
+            <div>
+              <strong>Alex Mercer</strong>
+              <p>Platform Administrator</p>
+            </div>
+            <button id="logoutBtn" class="btn btn-secondary" type="button">Выйти</button>
+          </div>
+        </header>
 
-        <section id="screen-exercises" class="screen">
-          <div class="card">
-            <div class="section-head">
-              <div>
-                <h4>Библиотека упражнений</h4>
-                <p>Каталог упражнений для формирования конструкторов тренировок.</p>
+        <div id="contentWrap" class="content-wrap">
+          <section id="screen-plans" class="screen">
+            <div class="card stack-16">
+              <div class="section-head">
+                <div>
+                  <h4>Планы тренировок</h4>
+                  <p>Управление программами: публикация, статусы, ревизии и аудит изменений.</p>
+                </div>
+                <button class="btn btn-primary" type="button">Создать план</button>
+              </div>
+
+              <div class="toolbar toolbar-4">
+                <input id="planSearch" type="search" placeholder="Поиск плана или автора" />
+                <select id="planStatusFilter">
+                  <option value="all">Все статусы</option>
+                  <option value="Активный">Активный</option>
+                  <option value="Черновик">Черновик</option>
+                  <option value="Архив">Архив</option>
+                </select>
+                <select id="planSortPreset">
+                  <option value="updated_desc">Сортировка: обновление ↓</option>
+                  <option value="updated_asc">Сортировка: обновление ↑</option>
+                  <option value="name_asc">Название A→Z</option>
+                </select>
+                <button class="btn btn-secondary" type="button" disabled>Экспорт CSV</button>
+              </div>
+
+              <div class="table-wrap">
+                <table id="plansTable">
+                  <thead>
+                    <tr>
+                      <th data-sort="name">Название плана</th>
+                      <th data-sort="category">Категория</th>
+                      <th data-sort="duration">Длительность</th>
+                      <th data-sort="sessions">Кол-во тренировок</th>
+                      <th data-sort="author">Автор</th>
+                      <th data-sort="updated">Дата обновления</th>
+                      <th data-sort="status">Статус</th>
+                      <th>Действия</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
               </div>
             </div>
-            <div class="toolbar">
-              <input type="search" placeholder="Поиск: deadlift, plank, burpee" />
-              <select>
-                <option>Все категории</option>
-                <option>Силовые</option>
-                <option>Кардио</option>
-                <option>Мобилити</option>
-              </select>
-            </div>
-            <div class="cards-grid" id="exerciseCards"></div>
-          </div>
-        </section>
+          </section>
 
-        <section id="screen-progress" class="screen">
-          <div class="card">
-            <div class="section-head">
-              <div>
-                <h4>Прогресс пользователей</h4>
-                <p>Срез по активности, выполнению и распределению тренировочной нагрузки.</p>
+          <section id="screen-exercises" class="screen">
+            <div class="card stack-16">
+              <div class="section-head">
+                <div>
+                  <h4>Библиотека упражнений</h4>
+                  <p>Каталог с классификацией по категориям, мышечным группам и уровню сложности.</p>
+                </div>
+                <div class="tabs" role="tablist" aria-label="Вид">
+                  <button class="chip active" data-view="cards" type="button">Карточки</button>
+                  <button class="chip" data-view="list" type="button">Список</button>
+                </div>
+              </div>
+
+              <div class="toolbar toolbar-3">
+                <input id="exerciseSearch" type="search" placeholder="Поиск упражнения" />
+                <select id="exerciseCategoryFilter">
+                  <option value="all">Все категории</option>
+                  <option value="Силовые">Силовые</option>
+                  <option value="Кардио">Кардио</option>
+                  <option value="Мобилити">Мобилити</option>
+                  <option value="Core">Core</option>
+                  <option value="Растяжка">Растяжка</option>
+                </select>
+                <button id="exerciseReset" class="btn btn-ghost" type="button">Сбросить</button>
+              </div>
+
+              <div id="exerciseGrid" class="cards-grid"></div>
+            </div>
+          </section>
+
+          <section id="screen-progress" class="screen">
+            <div class="stack-16">
+              <div class="kpi-grid">
+                <article class="kpi card"><p>Активные пользователи</p><h5>12 840</h5><span class="delta up">+4.9% vs прошл. неделя</span></article>
+                <article class="kpi card"><p>Выполнено тренировок / неделя</p><h5>31 206</h5><span class="delta up">+8.2%</span></article>
+                <article class="kpi card"><p>Средняя завершённость плана</p><h5>73%</h5><span class="delta up">+1.1 п.п.</span></article>
+                <article class="kpi card"><p>Retention D30</p><h5>64%</h5><span class="delta down">-0.7 п.п.</span></article>
+              </div>
+
+              <div class="card stack-16">
+                <div class="section-head compact">
+                  <h4>Активность пользователей по дням</h4>
+                </div>
+                <div class="chart-wrap">
+                  <svg id="activityChart" viewBox="0 0 900 280" role="img" aria-label="Линейный график активности"></svg>
+                </div>
+              </div>
+
+              <div class="split-grid">
+                <article class="card stack-12">
+                  <h4>Последние инсайты</h4>
+                  <ul class="insight-list">
+                    <li>Пик завершения тренировок зафиксирован в среду с 18:00 до 21:00.</li>
+                    <li>План <strong>Hypertrophy Reload</strong> показывает лучший completion среди уровня Intermediate.</li>
+                    <li>Когорты, получившие push в 07:30, возвращаются на 9% чаще.</li>
+                  </ul>
+                </article>
+                <article class="card stack-12">
+                  <h4>Топ активных пользователей</h4>
+                  <div class="table-wrap">
+                    <table>
+                      <thead><tr><th>Пользователь</th><th>Сессий / нед</th><th>Completion</th></tr></thead>
+                      <tbody>
+                        <tr><td>Nina Volkov</td><td>9</td><td>96%</td></tr>
+                        <tr><td>Daniel Ross</td><td>8</td><td>92%</td></tr>
+                        <tr><td>Kate Orlov</td><td>8</td><td>88%</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </article>
               </div>
             </div>
-            <div class="stats-grid">
-              <article>
-                <p>Выполнено тренировок</p>
-                <h5>4,892</h5>
-                <span class="delta up">+12.8% за 30 дней</span>
-              </article>
-              <article>
-                <p>Средняя активность / user</p>
-                <h5>5.4 / нед.</h5>
-                <span class="delta up">+0.6</span>
-              </article>
-              <article>
-                <p>Drop-off rate</p>
-                <h5>7.9%</h5>
-                <span class="delta down">-1.1%</span>
-              </article>
-            </div>
-            <div class="chart-panel">
-              <svg viewBox="0 0 740 250" class="line-chart" role="img" aria-label="График тренировочной активности">
-                <polyline points="40,190 130,170 220,155 310,142 400,120 490,110 580,84 670,70" />
-                <line x1="40" y1="210" x2="700" y2="210" />
-                <line x1="40" y1="40" x2="40" y2="210" />
-                <g class="labels">
-                  <text x="40" y="232">Янв</text>
-                  <text x="130" y="232">Фев</text>
-                  <text x="220" y="232">Мар</text>
-                  <text x="310" y="232">Апр</text>
-                  <text x="400" y="232">Май</text>
-                  <text x="490" y="232">Июн</text>
-                  <text x="580" y="232">Июл</text>
-                  <text x="670" y="232">Авг</text>
-                </g>
-              </svg>
-            </div>
-          </div>
-        </section>
+          </section>
 
-        <section id="screen-notifications" class="screen">
-          <div class="card">
-            <div class="section-head">
-              <div>
-                <h4>Уведомления</h4>
-                <p>Push и email кампании с контролем доставки и отклика.</p>
+          <section id="screen-notifications" class="screen">
+            <div class="card stack-16">
+              <div class="section-head">
+                <div>
+                  <h4>Уведомления</h4>
+                  <p>Контроль push/email рассылок с метриками доставки и CTR.</p>
+                </div>
+                <button class="btn btn-primary" type="button">Создать уведомление</button>
               </div>
-              <button class="btn btn-primary" type="button">+ Создать уведомление</button>
-            </div>
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Канал</th>
-                    <th>Сообщение</th>
-                    <th>Сегмент</th>
-                    <th>Дата отправки</th>
-                    <th>Доставка</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Push</td>
-                    <td>Тренировка "Lower Strength" ждёт вас сегодня</td>
-                    <td>Intermediate / RU</td>
-                    <td>26.03.2026 08:30</td>
-                    <td><span class="badge ok">Доставлено 96%</span></td>
-                  </tr>
-                  <tr>
-                    <td>Email</td>
-                    <td>Ваш недельный отчёт по прогрессу</td>
-                    <td>All active users</td>
-                    <td>25.03.2026 19:10</td>
-                    <td><span class="badge warn">Частичная 82%</span></td>
-                  </tr>
-                  <tr>
-                    <td>Push</td>
-                    <td>Не пропустите восстановительный день</td>
-                    <td>Users with 4+ sessions</td>
-                    <td>24.03.2026 21:45</td>
-                    <td><span class="badge error">Ошибка API</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
 
-        <section id="screen-jobs" class="screen">
-          <div class="card">
-            <div class="section-head">
-              <div>
-                <h4>Фоновые задачи</h4>
-                <p>Мониторинг очередей, статусов и логов асинхронной обработки.</p>
+              <div class="tabs" id="notificationFilter">
+                <button class="chip active" data-filter="all" type="button">Все</button>
+                <button class="chip" data-filter="Push" type="button">Push</button>
+                <button class="chip" data-filter="Email" type="button">Email</button>
+                <button class="chip" data-filter="Scheduled" type="button">Scheduled</button>
+                <button class="chip" data-filter="Sent" type="button">Sent</button>
+                <button class="chip" data-filter="Failed" type="button">Failed</button>
+              </div>
+
+              <div class="table-wrap">
+                <table id="notificationsTable">
+                  <thead>
+                    <tr>
+                      <th>Название</th><th>Канал</th><th>Аудитория</th><th>Время отправки</th><th>Статус доставки</th><th>Open rate / CTR</th><th>Действия</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+
+              <div id="notificationEmpty" class="empty-state hidden">
+                <h5>Нет черновиков уведомлений</h5>
+                <p>Попробуйте изменить фильтр или создайте новую кампанию.</p>
               </div>
             </div>
-            <div class="jobs-list">
-              <article class="job-item">
-                <header>
-                  <strong>sync-wearables-29831</strong>
-                  <span class="badge neutral">В очереди</span>
-                </header>
-                <p>Синхронизация данных с Apple Health и Garmin Connect.</p>
-                <small class="mono">Создано: 27.03.2026 09:05 • ETA: 2m</small>
-              </article>
-              <article class="job-item">
-                <header>
-                  <strong>build-user-report-10391</strong>
-                  <span class="badge info">Выполняется</span>
-                </header>
-                <p>Генерация отчёта по пользовательскому retention cohort.</p>
-                <div class="progress-track"><span style="width: 62%"></span></div>
-                <small class="mono">Шаг 5 из 8 • runtime: 00:01:43</small>
-              </article>
-              <article class="job-item">
-                <header>
-                  <strong>archive-plan-revisions-4210</strong>
-                  <span class="badge ok">Завершено</span>
-                </header>
-                <p>Архивация устаревших ревизий планов за Q1 2026.</p>
-                <small class="mono">Время: 00:00:57 • Завершено 27.03.2026 08:41</small>
-              </article>
-              <article class="job-item">
-                <header>
-                  <strong>notify-timezone-recalc-501</strong>
-                  <span class="badge error">Ошибка</span>
-                </header>
-                <p>Перерасчёт часовых поясов при массовой рассылке напоминаний.</p>
-                <small class="mono">ERR_CONN_TIMEOUT • retry in 45 sec • log#99a8c1</small>
-              </article>
-            </div>
-          </div>
-        </section>
+          </section>
 
-        <div id="skeleton" class="skeleton-layer hidden">
-          <div class="skeleton-card"></div>
-          <div class="skeleton-card"></div>
-          <div class="skeleton-card"></div>
+          <section id="screen-jobs" class="screen">
+            <div class="stack-16">
+              <div class="kpi-grid">
+                <article class="kpi card"><p>В очереди</p><h5 id="kpiQueue">0</h5></article>
+                <article class="kpi card"><p>Выполняется</p><h5 id="kpiRunning">0</h5></article>
+                <article class="kpi card"><p>Завершено</p><h5 id="kpiDone">0</h5></article>
+                <article class="kpi card"><p>Ошибки</p><h5 id="kpiError">0</h5></article>
+              </div>
+
+              <div class="card stack-16">
+                <div class="section-head">
+                  <div>
+                    <h4>Фоновые задачи</h4>
+                    <p>Очередь обработки, статус исполнения, телеметрия и диагностические логи.</p>
+                  </div>
+                </div>
+
+                <div class="toolbar toolbar-3">
+                  <input id="jobSearch" type="search" placeholder="Поиск по ID или названию" />
+                  <select id="jobStatusFilter">
+                    <option value="all">Все статусы</option>
+                    <option value="В очереди">В очереди</option>
+                    <option value="Выполняется">Выполняется</option>
+                    <option value="Завершено">Завершено</option>
+                    <option value="Ошибка">Ошибка</option>
+                  </select>
+                  <button class="btn btn-secondary" type="button">Обновить очередь</button>
+                </div>
+
+                <div class="table-wrap">
+                  <table id="jobsTable">
+                    <thead>
+                      <tr>
+                        <th>ID задачи</th><th>Название</th><th>Тип</th><th>Запущена</th><th>Длительность</th><th>Статус</th><th>Прогресс</th><th>Логи</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+
+                <div id="jobsEmpty" class="empty-state hidden">
+                  <h5>Нет задач с ошибками</h5>
+                  <p>Система работает стабильно, критические ошибки отсутствуют.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div id="skeleton" class="skeleton-layer hidden" aria-hidden="true">
+          <div class="skeleton-row"></div>
+          <div class="skeleton-row"></div>
+          <div class="skeleton-row"></div>
         </div>
       </main>
     </div>
