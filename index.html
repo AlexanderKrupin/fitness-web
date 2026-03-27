@@ -9,7 +9,14 @@
   <body>
     <div class="app-shell">
       <aside class="sidebar">
-        <div class="brand">FITNESS CORP</div>
+        <div class="brand-wrap">
+          <div class="brand-logo">FC</div>
+          <div class="brand-text">
+            <div class="brand">Fitness Corp</div>
+            <small>Move • Recover • Repeat</small>
+          </div>
+        </div>
+
         <nav class="nav">
           <a href="#auth">Авторизация</a>
           <a href="#plans">Планы тренировок</a>
@@ -18,13 +25,44 @@
           <a href="#notifications">Уведомления</a>
           <a href="#jobs">Фоновые задачи</a>
         </nav>
+
+        <div class="sidebar-cta">
+          <h3>Новая цель</h3>
+          <p>Поставьте цель на 4 недели и отслеживайте прогресс по неделям.</p>
+          <button class="primary-btn">Создать цель</button>
+        </div>
       </aside>
 
       <main class="content">
-        <header class="topbar">
-          <h1>Панель управления фитнес-приложением</h1>
+        <header class="topbar card">
+          <div>
+            <p class="eyebrow">Fitness Dashboard</p>
+            <h1>Панель управления фитнес-приложением</h1>
+          </div>
           <button class="ghost-btn">Новый отчёт</button>
         </header>
+
+        <section class="hero card">
+          <div>
+            <p class="eyebrow">Пульс системы</p>
+            <h2>Активность пользователей на этой неделе</h2>
+            <p>+18% к вовлечению и +12% к посещаемости тренировок.</p>
+          </div>
+          <div class="hero-stats">
+            <article>
+              <strong>1 284</strong>
+              <span>Активных пользователей</span>
+            </article>
+            <article>
+              <strong>92%</strong>
+              <span>Удержание</span>
+            </article>
+            <article>
+              <strong>4.8</strong>
+              <span>Средняя оценка</span>
+            </article>
+          </div>
+        </section>
 
         <section id="auth" class="card">
           <h2>Авторизация</h2>
